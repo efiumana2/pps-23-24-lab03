@@ -3,6 +3,7 @@ package u03
 import Optionals.Optional.*
 import org.junit.*
 import org.junit.Assert.*
+import u03.Persons.Person
 
 class SequenceTest:
   import u03.Sequences.*
@@ -47,3 +48,19 @@ class SequenceTest:
     assertEquals(Just(10), min(l))
     assertEquals(Just(1), min(Cons(1, Nil())))
     assertEquals(Empty(), min(Nil()))
+
+  @Test def testGetCourses() =
+    assertEquals(
+          Cons("sysint",
+          Cons("pps",
+          Cons("pcd",
+          Nil()))),
+        GetCourses(Sequence.Cons(Person.Teacher("io","sysint"),
+          Sequence.Cons(Person.Teacher("Mirko","pps"),
+          Sequence.Cons(Person.Teacher("Alessandro","pcd"),
+            Sequence.Cons(Person.Student("Enrico",2023),
+          Sequence.Nil()))))))
+
+  @Test def testFolfLeft() =
+    val lst = Cons (3, Cons (7, Cons (1, Cons (5, Nil ()))))
+    assertEquals(-16,lst.foldLeft(0,(_ - _)))

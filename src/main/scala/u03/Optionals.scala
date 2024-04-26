@@ -11,6 +11,10 @@ object Optionals:
   // operations (/algorithms)
   object Optional:
 
+    def get(opt: Optional[Int]): Int = opt match
+      case Just(a)  => a
+      case _        => 0
+
     def isEmpty[A](opt: Optional[A]): Boolean = opt match
       case Empty() => true
       case _       => false
@@ -27,11 +31,12 @@ object Optionals:
   import Optionals.* // to work with Optionals (to see Optional type)
   import Optional.* // to directly access algorithms
 
-  val s1: Optional[Int] = Just(1)
+  val s1: Optional[Int] = Just(12)
   val s2: Optional[Int] = Empty()
 
   println(s1) // Some(1)
-  println(isEmpty(s1)) // false
+  println(get(s1))
+  println(isEmpty (s1)) // false
   println(orElse(s1, 0)) // 1
   println(orElse(s2, 0)) // 0
   println(map(s1)(i => "val: " + 1)) // Some("val: 1")
