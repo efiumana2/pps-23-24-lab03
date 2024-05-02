@@ -29,6 +29,7 @@ object Sequences: // Essentially, generic linkedlists
         case Cons(_, t) => t.filter(pred)
         case Nil() => Nil()
 
+//Task 2
       def foldLeft(dflt: A,mapper: (A,A) => A):A = l match
         case Cons(h,t) => t.foldLeft(mapper(dflt,h),mapper)
         case Nil() => dflt
@@ -50,7 +51,7 @@ object Sequences: // Essentially, generic linkedlists
       case _          => 0
 
 
-    // Lab 03
+    // Lab 03 - Task 1
     def zip[A, B](first: Sequence[A], second: Sequence[B]): Sequence[(A, B)] = first match
       case Cons(h, t) => second match
         case Cons(h2, t2) => Cons((h,h2),zip(t,t2))
